@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'ex02.apps.Ex02Config',
     'ex03.apps.Ex03Config',
     'ex04.apps.Ex04Config',
-    'ex05.apps.Ex05Config'
+    'ex05.apps.Ex05Config',
+    'ex06.apps.Ex06Config',
 ]
 
 MIDDLEWARE = [
@@ -115,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'#'UTC'
 
 USE_I18N = True
 
