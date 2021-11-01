@@ -1,0 +1,14 @@
+{% extends "ex07/base.html" %}
+
+{% block title %}Update element{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block body %}
+<form action="" method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit">
+</form>
+{% endblock %}
