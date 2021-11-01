@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ex02_movies table content</title>
+    <style>
+        h2 {
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 4px;
+        }
+        th {
+            background: #fc0;
+            height: 40px;
+            vertical-align: bottom;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>ex02_movies table content</h2>
+    <table>
+        <tr>
+            <th>№</th>
+            <th>Title</th>
+            <th>Opening crawl</th>
+            <th>Director</th>
+            <th>Producer</th>
+            <th>Release Date</th>
+        </tr>
+    {% for m in movies %}
+        <tr>
+            <td>
+                {{m.episode_nb}}
+            </td>
+            <td>
+                {{m.title}}
+            </td>
+            <td>
+                {{m.opening_crawl}}
+            </td>
+            <td>
+                {{m.director}}
+            </td>
+            <td>
+                {{m.producer}}
+            </td>
+            <td>
+                {{m.release_date}}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+
+</body>
+</html>

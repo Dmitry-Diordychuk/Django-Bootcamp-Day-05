@@ -1,0 +1,19 @@
+{% extends "ex05/base.html" %}
+
+{% block title %}Remove element{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block body %}
+<form action="" method="post">
+{% csrf_token %}
+    <h2>Choose movie to remove</h2>
+    <select name="episode_nb">
+        {% for m in movies %}
+        <option value="{{m.episode_nb}}">{{m.title}}</option>
+        {% endfor %}
+    </select>
+<input type="submit">
+</form>
+{% endblock %}
