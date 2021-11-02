@@ -94,8 +94,8 @@ def update(request):
     try:
         movies = Movies.objects.all()
     except Exception as error:
-        return render(request, "ex06/page.html", {
-            'title': "ex06 display",
+        return render(request, "ex07/page.html", {
+            'title': "ex07 display",
             'messages':  ["No data available"],
         })
 
@@ -106,9 +106,8 @@ def update(request):
             movie = movies.filter(episode_nb = movie_ep)
             movie.update(opening_crawl = opening_crawl)
         except Exception as error:
-            print(error)
-            return render(request, "ex06/page.html", {
-                'title': "ex06 display",
+            return render(request, "ex07/page.html", {
+                'title': "ex07 display",
                 'messages':  ["No data available"],
             })
 
@@ -116,5 +115,5 @@ def update(request):
     for m in movies:
        titles_enum.append((str(m.episode_nb), m.title))
     form = MovieForm(choices=titles_enum)
-    return render(request, 'ex06/update.html', {'form': form})
+    return render(request, 'ex07/update.html', {'form': form})
 

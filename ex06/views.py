@@ -51,7 +51,7 @@ def init(request):
 
     except (Exception, Error) as error:
         return render(request, "ex06/page.html", {
-            'title': "ex00 init",
+            'title': "ex06 init",
             'messages': ["Database error: " + str(error)],
         })
     finally:
@@ -59,7 +59,7 @@ def init(request):
             cursor.close()
             connection.close()
     return render(request, "ex06/page.html", {
-        'title': "ex00 init",
+        'title': "ex06 init",
         'messages':  ["Ok"],
     })
 

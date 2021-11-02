@@ -41,8 +41,6 @@ def init(request):
         cursor.execute(create_table_query)
         connection.commit()
 
-        print("WTF?")
-
     except (Exception, Error) as e:
         return render(request, "ex00/page.html", {
             'title': "ex00 init",

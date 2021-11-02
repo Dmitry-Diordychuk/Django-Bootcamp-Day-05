@@ -30,7 +30,7 @@ def init(request):
 
     except (Exception, Error) as error:
         return render(request, "ex04/page.html", {
-            'title': "ex00 init",
+            'title': "ex04 init",
             'messages': ["Database error: " + str(error)],
         })
     finally:
@@ -38,7 +38,7 @@ def init(request):
             cursor.close()
             connection.close()
     return render(request, "ex04/page.html", {
-        'title': "ex00 init",
+        'title': "ex04 init",
         'messages':  ["Ok"],
     })
 
