@@ -163,7 +163,6 @@ def display(request):
             connection.close()
 
     if records:
-        print(records[5][6])
         return render(request, 'ex06/display.html', {'records': records})
     else:
         return render(request, "ex06/page.html", {
@@ -194,7 +193,6 @@ def update(request):
             )
             connection.commit()
         except (Exception, Error) as error:
-            print(error)
             return render(request, "ex06/page.html", {
                 'title': "ex06 display",
                 'messages':  ["No data available"],
