@@ -51,7 +51,7 @@ def populate(request):
     """
     connection = None
     cursor = None
-    insert_queries = None
+    insert_queries = []
     last_index = -1
     try:
         connection = psycopg2.connect(user="djangouser",
@@ -61,28 +61,55 @@ def populate(request):
                                       database="djangotraining")
         cursor = connection.cursor()
 
-        insert_queries = [
-            """INSERT INTO ex04_movies (episode_nb, title, director, producer, release_date)
-               VALUES (1, 'The Phantom Menace', 'George Lucas', 'Rick McCallum', '1999-05-19')
-            """,
-            """INSERT INTO ex04_movies (episode_nb, title, director, producer, release_date)
-               VALUES (2, 'Attack of the Clones', 'George Lucas', 'Rick McCallum', '2002-05-16')
-            """,
-            """INSERT INTO ex04_movies (episode_nb, title, director, producer, release_date)
-               VALUES (3, 'Revenge of the Sith', 'George Lucas', 'Rick McCallum', '2005-05-19')
-            """,
-            """INSERT INTO ex04_movies (episode_nb, title, director, producer, release_date)
-               VALUES (4, 'A New Hope', 'George Lucas', 'Gary Kurtz, Rick McCallum', '1977-05-25')
-            """,
-            """INSERT INTO ex04_movies (episode_nb, title, director, producer, release_date)
-               VALUES (5, 'The Empire Strikes Back', 'Irvin Kershner', 'Gary Kurtz, Rick McCallum', '1980-05-17')
-            """,
-            """INSERT INTO ex04_movies (episode_nb, title, director, producer, release_date)
-               VALUES (6, 'Return of the Jedi', 'Richard Marquand', 'Howard G. Kazanjian, George Lucas, Rick McCallum', '1983-05-25')
-            """,
-            """INSERT INTO ex04_movies (episode_nb, title, director, producer, release_date)
-               VALUES (7, 'The Force Awakens', 'J. J. Abrams', 'Kathleen Kennedy, J. J. Abrams, Bryan Burk', '2015-12-11')
-            """]
+        cursor.execute('SELECT * FROM ex04_movies WHERE episode_nb = 1')
+        if not cursor.fetchone():
+            insert_queries.append(
+                """INSERT INTO ex04_movies (episode_nb, title, director, producer, release_date)
+                VALUES (1, 'The Phantom Menace', 'George Lucas', 'Rick McCallum', '1999-05-19')
+                """
+            )
+        cursor.execute('SELECT * FROM ex04_movies WHERE episode_nb = 2')
+        if not cursor.fetchone():
+            insert_queries.append(
+                """INSERT INTO ex04_movies (episode_nb, title, director, producer, release_date)
+                VALUES (2, 'Attack of the Clones', 'George Lucas', 'Rick McCallum', '2002-05-16')
+                """
+            )
+        cursor.execute('SELECT * FROM ex04_movies WHERE episode_nb = 3')
+        if not cursor.fetchone():
+            insert_queries.append(
+                """INSERT INTO ex04_movies (episode_nb, title, director, producer, release_date)
+                VALUES (3, 'Revenge of the Sith', 'George Lucas', 'Rick McCallum', '2005-05-19')
+                """
+            )
+        cursor.execute('SELECT * FROM ex04_movies WHERE episode_nb = 4')
+        if not cursor.fetchone():
+            insert_queries.append(
+                """INSERT INTO ex04_movies (episode_nb, title, director, producer, release_date)
+                VALUES (4, 'A New Hope', 'George Lucas', 'Gary Kurtz, Rick McCallum', '1977-05-25')
+                """
+            )
+        cursor.execute('SELECT * FROM ex04_movies WHERE episode_nb = 5')
+        if not cursor.fetchone():
+            insert_queries.append(
+                """INSERT INTO ex04_movies (episode_nb, title, director, producer, release_date)
+                VALUES (5, 'The Empire Strikes Back', 'Irvin Kershner', 'Gary Kurtz, Rick McCallum', '1980-05-17')
+                """
+            )
+        cursor.execute('SELECT * FROM ex04_movies WHERE episode_nb = 6')
+        if not cursor.fetchone():
+            insert_queries.append(
+                """INSERT INTO ex04_movies (episode_nb, title, director, producer, release_date)
+                VALUES (6, 'Return of the Jedi', 'Richard Marquand', 'Howard G. Kazanjian, George Lucas, Rick McCallum', '1983-05-25')
+                """
+            )
+        cursor.execute('SELECT * FROM ex04_movies WHERE episode_nb = 7')
+        if not cursor.fetchone():
+            insert_queries.append(
+                """INSERT INTO ex04_movies (episode_nb, title, director, producer, release_date)
+                VALUES (7, 'The Force Awakens', 'J. J. Abrams', 'Kathleen Kennedy, J. J. Abrams, Bryan Burk', '2015-12-11')
+                """
+            )
 
         last_index = 0
         for i in range(len(insert_queries)):
@@ -115,6 +142,7 @@ def populate(request):
     messages = []
     for q in insert_queries:
         messages.append(q + " OK")
+    messages.append("Done")
     return render(request, "ex04/page.html", {
         'title': "ex04 populate",
         'messages':  messages,
